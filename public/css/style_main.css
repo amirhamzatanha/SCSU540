@@ -1,0 +1,163 @@
+header{
+  background-color:#f5b4bb; 
+  text-align:center;
+  padding:10px 0px; 
+}
+header h1{
+  margin:0px;
+  font-size:26px; 
+  color:#414141; 
+  font-weight:1000;
+  font-family: 'Acme', sans-serif;
+}
+
+h1 span{
+  font-weight:400;
+}
+body{
+  font-family: "Open Sans", arial;
+  color:#fff;
+  background: #f3e0e2;  
+  margin:0;
+}
+.flex{
+  display:flex;
+}
+nav{
+  margin-top:15px;
+  background:#e69385;
+  height:100%;
+  width:250px;
+  box-shadow:4px 4px 4px #3b1915;
+  border-radius:5px;
+  margin-left:1%;
+  position:sticky;
+  position:-webkit-sticky;
+  top:20px;
+}
+
+nav a {
+  text-decoration:none;
+  color:BLACK;
+  font-size: 16px;
+  display:block;
+  border-bottom:1px solid #f0664e;  
+}
+
+nav button{
+  background:#e69385;
+  border: none;
+  box-shadow:4px 4px 4px #3b1915;
+  text-decoration:none;
+  color:BLACK;
+  font-size: 16px;
+  width:100%;
+  display:block;
+  top:1px;
+  text-align: left;
+  border-bottom:1px solid #f0664e;  
+  cursor: pointer;
+
+
+}
+nav button:hover{
+  color:#FF4B2B;
+  background-color:#FFFFFF; 
+}
+
+.fa {
+  position: relative;
+  top:2px;
+  width: 70px;
+  height: 36px;
+  text-align: center;
+  font-size:20px;
+}
+nav span {
+  position:relative;
+  top:12px;
+}
+.logo{
+  position:relative;
+  top:0px;
+  padding:1px;
+  background-color:#e6735f;
+  color:#07145D; 
+  font-family: 'Big Shoulders Display', cursive;
+  text-align:center;
+  line-height: 0.8;
+}
+.logo p{
+  color:black;
+}
+nav a:hover{
+  color:#FF4B2B;
+  background-color:#FFFFFF; 
+}
+.contents{
+  background-color:#3E414F;
+  padding:15px 30px;
+  width:75%;
+  margin:15px 3%;
+ 
+  box-shadow:4px 4px 4px #3C3F35;
+  border-radius:5px;
+}
+
+.contents h3{
+  border-bottom: 1px solid grey;
+  padding-bottom:10px;
+  font-family: 'Shadows Into Light', cursive;
+  margin-bottom: 20px
+}
+
+.contents p{
+  text-align:justify;
+  margin-bottom:50px;
+  line-height:2;
+}
+footer{
+  background:#323232;
+  padding:10px;
+  position: fixed;
+  left: 0;
+  bottom: 10px;
+  width: 100%;
+
+}
+.left{
+  float:left;
+  margin-left:3%;
+}
+.right{
+  display:inline-block;
+ margin-right:3%;
+}
+.right a{
+  color:white;
+  margin-right:8px;
+  text-decoration:none;
+}
+.right a:hover{
+  border-bottom: 2px solid white;
+}
+
+
+
+
+table {border-collapse: collapse; font-family: "Open Sans", arial}
+td, th {border:  1px solid;
+      padding: 10px;
+      background: 3E414F;
+      box-sizing: border-box;
+      text-align: left;
+}
+
+
+th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background:#e69385;
+}
