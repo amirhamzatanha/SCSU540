@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style_main.css">
+<title> Supermarket Inner Page </title>
+</head>
+<header>
+  
+  <h1><span>Welcome </span><%=  user.designation%><br></h1>
+  <h3>ABC SuperMarket</h3>
+</header>
+<div class="flex">
+<nav>
+  <a class="logo" href="#">
+    <h2>Activites</h2>
+    <p>Please Select an action</p>
+  </a> 
+ 
+  <a href="/">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Home</span>
+  </a>
+
+  <a href=" #">
+    <i class="fa fa-book fa-lg"></i>
+    <span>User Profile</span>
+  </a>
+  
+  <a href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 1</span>
+  </a>
+
+ <a href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 2</span>
+  </a>
+
+  <a  href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 3</span>
+  </a>
+
+  <a href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 4</span>
+  </a>
+
+  <a href="/users">
+    <i class="fa fa-user fa-lg"></i>
+    <span>Users</span>
+  </a>
+
+    <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
+    <button type="submit"><i class="fa fa-key fa-sm"></i><span>Log Out</span></button>
+    </form>
+ 
+
+  </nav>
+  <div class="contents">
+    <h1>List of all users</h1>
+
+    <h3> We Can Develop Data Containers here</h3>
+    <p>We will decide and develope methods to put some data here </p>
+    <table id="conferenceTable"  >
+    	<tr>
+        <th style="min-width:10mm">#</th> 
+        <th style="min-width:50mm"> First Name</th> 
+        <th style="width:50mm"> Last Name</th> 
+        <th style="width:100mm"> Email</th>
+        <th style="width:50mm"> Designation</th>  
+        <th style="min-width:10mm">Actions </th>    
+
+      
+      </tr>
+      <% if(data != "") { %>
+        <% let i = 1 %>
+        <% data.forEach((rows) => { %>
+          <tr>
+          <td style="min-width:10mm; text-align: center;"><%= i++ %></td> 
+          <td style="width:50mm"><%= rows.fName %></td>
+          <td style="width:50mm"><%= rows.lName %></td>
+          <td style="width:100mm"><%= rows.email %></td>
+          <td style="width:50mm"><%= rows.designation %></td>
+          <td style="min-width: 20mm; text-align: center;" >
+
+       
+            <a href="/edituser/<%= rows.id %>" type="button" class = "btn btn-light btn-small"><i class="bi bi-eye"></i>View</a> 
+            <a href="/edituser/" type="button" class = "btn btn-light btn-small"><i class="bi bi-pencil"></i>edit</a> 
+            <a href="/edituser/id" type="button" class = "btn btn-light btn-small"><i class="bi bi-"></i>DELETE</a> 
+
+          </td>
+          </tr>
+        <% }); %>
+    <% } %>
+    </table>
+
+  </div>
+</div>
+<footer>
+ <div class="left">
+      Final Project Templete | some context| 
+  </div>
+  <div class="right">
+    <a href="#"> Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>

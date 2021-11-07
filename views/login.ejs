@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/style.css">
+		<title>CSC540</title>
+</head>
+<body>
+	<div class="container" id="container">
+		<div class="form-container log-in-container">
+			<form action="/login" method="POST">
+				<h1>Login</h1></br></br>
+					<% if(errors != "") { %>
+                        <% errors.forEach((item) => { %>
+                            <span>"alert alert-danger">
+                                <%- item %>
+                            </span>
+                        <% }); %>
+                    <% } %>
+				
+				<input type="email" id="email" name="email" placeholder="Email" />
+				<input type="password" id="password" name="password" placeholder="Password" />
+				<a href="/register">New User? Please Register Here. </a>
+				<button id="submit">Log In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-right">
+					<h1>CSC540 SuperMarket Login Form</h1>
+					<p>The inner page may varray according to the user privileges.</p>
+					<p style="text-align: left">
+						Vinaydeep Singh​ <br/>
+						Kevin Kuna​ <br/>
+						Mir Hamza Nasiri​ <br/>
+						Rafael Ramos </p>
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="../public/css/style_main.css">
+<title> Supermarket Inner Page </title>
+</head>
+<header>
+  
+  <h1><span>Welcome </span><%=  user.designation%><br></h1>
+  <h3>ABC SuperMarket</h3>
+</header>
+<div class="flex">
+<nav>
+  <a class="logo" href="#">
+    <h2>Activites</h2>
+    <p>Please Select an action</p>
+  </a> 
+ 
+  <a href="/">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Home</span>
+  </a>
+
+  <a href=" #">
+    <i class="fa fa-book fa-lg"></i>
+    <span>User Profile</span>
+  </a>
+  
+  <a href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 1</span>
+  </a>
+
+ <a href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 2</span>
+  </a>
+
+  <a  href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 3</span>
+  </a>
+
+  <a href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 4</span>
+  </a>
+
+  <a href="/users">
+    <i class="fa fa-user fa-lg"></i>
+    <span>Users</span>
+  </a>
+
+    <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
+    <button type="submit"><i class="fa fa-key fa-sm"></i><span>Log Out</span></button>
+    </form>
+ 
+
+  </nav>
+  <div class="contents">
+    <h1>List of all users</h1>
+
+    <h3> We Can Develop Data Containers here</h3>
+    <p>We will decide and develope methods to put some data here </p>
+  
+
+  </div>
+</div>
+<footer>
+ <div class="left">
+      Final Project Templete | some context| 
+  </div>
+  <div class="right">
+    <a href="#"> Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
