@@ -9,8 +9,8 @@
 </head>
 <header>
   
-  <h1><span>Welcome </span><%=  user.designation%><br></h1>
-  <h3>ABC SuperMarket</h3>
+  <h1><span>Welcome </span><%=  user.fName%> <%= user.lName%></h1>
+  <h3>Add and View inventory</h3>
 </header>
 <div class="flex">
   <nav>
@@ -47,48 +47,72 @@
  
 
   </nav>
-  
   <div class="contents">
-    <h1>List of all users</h1>
+    <h1>inventory</h1>
 
-    <h3> We Can Develop Data Containers here</h3>
-    <p>We will decide and develope methods to put some data here </p>
-    <table id="conferenceTable"  >
-    	<tr>
-        <th style="min-width:10mm">#</th> 
-        <th style="min-width:50mm"> First Name</th> 
-        <th style="width:50mm"> Last Name</th> 
-        <th style="width:50mm"> Email</th>
-        <th style="width:50mm"> Designation</th>  
-        <th style="min-width:50mm; text-align: center;">Actions </th>    
+  
+    <h3>Select Items Departments to view its data </h3>
+    <form method="post" id="deptNum" action="/deptName">
 
+      <% if(dept != "") { %>
+        <% let i = 1 %>
+        <span>Please Select a department  </span>
+        
+        <select id="deptNum" name="deptNum">
+          <option selected>-- Please Select a departmetnt  ----</option>
+
+        <% dept.forEach((rows) => { %>
+          <option value="<%= rows.deptNum %>"> <%= rows.deptDescription %></option>
+          
+          <% }); %>
+        </select>
+
+          <button id="deptNum" type="submit" style="color: black; width: 150px;"  ><span> View Data</span> </button>
       
-      </tr>
+    </form>
+    <% } %>
+
+    <% if(errors != "") { %>
+      <% errors.forEach((item) => { %>
+        <br><br>  
+        <span class = "alert alert-danger">
+              <%- item %>
+          </span>
+      <% }); %>
+  <% } %>
+
       <% if(data != "") { %>
         <% let i = 1 %>
+        <br><br>
+        <table id="inventoryTable"  >
+          <tr>
+            <th style="min-width:10mm">#</th> 
+            <th style="min-width:50mm"> UPC</th> 
+            <th style="min-width:50mm"> Item Description</th> 
+            <th style="min-width:50mm"> Price</th>
+            <th style="min-width:50mm"> Quantity</th>  
+            <th style="min-width:50mm;">Notes </th>      
+          </tr>
+
         <% data.forEach((rows) => { %>
           <tr>
           <td style="min-width:10mm; text-align: center;"><%= i++ %></td> 
-          <td style="width:50mm"><%= rows.firstName %></td>
-          <td style="width:50mm"><%= rows.lastName %></td>
-          <td style="width:50mm"><%= rows.email %></td>
-          <td style="width:50mm"><%= rows.positionDescription %></td>
-          <td style="min-width: 50mm; text-align: center;">
-
-       
-
-            <form id="showUser" action = "/showUser/<%= rows.employeeID %>" method="POST" style="display: inline;">
-              <button type="submit" class="link">Edit </button></form>
-              <span> || </span>
-              <form id="showUser" action = "/deleteUser/<%= rows.employeeID %>" method="POST" style="display: inline;">
-              <button type="submit" class="link"><span> Delete</span> </button>
-              </form>
-
+          <td style="min-width:50mm"><%= rows.UPC %></td>
+          <td style="min-width:50mm"><%= rows.itemDescription %></td>
+          <td style="min-width:50mm">$ <%= rows.price %></td>
+          <td style="min-width:50mm"><%= rows.amount %></td>
+          <td style="min-width:50mm"><%= rows.notes %></td>
           </td>
           </tr>
+
         <% }); %>
+      </table>
     <% } %>
-    </table>
+   
+
+
+
+
 
   </div>
 </div>

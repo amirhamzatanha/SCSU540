@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/style_main.css">
+<title> Supermarket Inner Page </title>
+</head>
+<header>
+  
+  <h1><span>Welcome </span><%=  user.fName%> <%= user.lName%></h1>
+  <h3>Edit user details and change password</h3>
+</header>
+<div class="flex">
+  <nav>
+    <a class="logo" href="#">
+      <h2>Activites</h2>
+      <p>Please Select an action</p>
+    </a> 
+   
+  <a href="/">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Home</span>
+  </a>
+  
+  <a href="#">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Choice 1</span>
+  </a>
+
+  <form id="inventory" action = "/addInventory" method="get">
+    <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+    </form>
+
+  <form id="inventory" action = "/inventory" method="get">
+    <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
+    </form>
+
+  <form id="inventory" action = "/users" method="get">
+      <button type="submit"><i class="fa fa-user fa-lg"></i><span>Users</span></button>
+      </form>
+
+    <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
+    <button type="submit"><i class="fa fa-key fa-lg"></i><span>Log Out</span></button>
+    </form>
+ 
+
+  </nav>
+  <div class="contents">
+    <h1>Edit user</h1>
+
+  
+    <h3>The Selected user is :    <%= userDetails[0].firstName %> <%= userDetails[0].lastName %>    </h3>
+
+      <% if(userDetails != "") { %>
+        <% let i = 1 %>
+          <form id="logoutf" action = "/updateUser" method="POST" style="display: inline;">
+          <label for="fName" style="width:100px; display: inline-block;" >First Name</label>
+          <input type="text" id="fName" value="<%= userDetails[0].firstName %>"> <br>
+          <label for="lName" style="width: 100px; display: inline-block;">Last Name</label>
+
+          <input type="text" id="lName"value="<%= userDetails[0].lastName %>"> <br>
+          <label for="designation"style="width: 100px; display: inline-block;">Designation</label>
+          <input type="text" id="Designation"value="<%= userDetails[0].positionDescription %>"> <br>
+          <label for="email"style="width: 100px; display: inline-block;">Email</label>
+          <input type="text" id="email"value="<%= userDetails[0].email %>"> <br>
+          <label for="email"style="width: 100px; display: inline-block;">Hire Date</label>
+          <input type="text" id="email"value="<%= userDetails[0].hireDate %>"> 
+          <br>
+          <label for="email"style="width: 100px; display: inline-block;">Phone Number</label>
+          <input type="text" id="email"value="<%= userDetails[0].employeePhone %>"> 
+          <br>
+          <label for="email"style="width: 100px; display: inline-block;">Gender</label>
+          <input type="text" id="email"value="<%= userDetails[0].gender %>"> 
+          <br>
+          <label for="email"style="width: 100px; display: inline-block;">Date of Birth</label>
+          <input type="text" id="email"value="<%= userDetails[0].DOB %>"> 
+
+
+          <br>
+          <span>Change User info Only || </span>
+           
+              <button type="submit" style="color: black; width: 200px;" >Update Info </button></form><br>
+              <br>
+
+                <h3>Change the user password</h3>
+
+                <label for="password"style="width: 100px; display: inline-block;">Password</label>
+                <input type="password" id="password" placeholder="New Password" required> <br>
+                <label for="password"style="width: 100px; display: inline-block;">Password</label>
+                <input type="password" id="passwordConfirmation" name='passwordConfirmation' placeholder="Password Confirmation" required /> <br>
+                <span>Change User Password || </span>
+                <form id="logoutf" action = "/edituser/" method="POST" style="display: inline;">
+                  <button type="submit" style="color: black; width: 200px;" >Change Password </button></form><br>
+                  <br>
+
+      
+          </td>
+          </tr>
+  
+    <% } %>
+
+
+  </div>
+</div>
+<footer>
+ <div class="left">
+      Final Project Templete | some context| 
+  </div>
+  <div class="right">
+    <a href="#"> Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
