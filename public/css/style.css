@@ -135,3 +135,20 @@ input {
 .overlay-right {
 	right: 0;
 }
+
+select {
+	cursor:pointer;
+	display:inline-block;
+	position:relative;
+	color:black;
+	height: 40px;
+	width: 100%;
+
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+  
+	
+  }

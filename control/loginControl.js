@@ -1,6 +1,5 @@
 const validationResult = require('express-validator');
 const loginService = require('../services/login');
-const DBConnection = require('../config/dbconnect');
 const { app } = require('express');
 
 let getPageLogin = (req, res) => {

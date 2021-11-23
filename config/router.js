@@ -1,5 +1,5 @@
 const express = require('express');
-const homepagecontroller = require('../control/homePageControl');
+const homepagecontroller = require('../control/handlePages');
 const registerController = require('../control/registerControl');
 const loginController = require('../control/loginControl');
 const auth = require('../services/validation');
@@ -14,7 +14,20 @@ let router = express.Router();
 let initWebRoutes =async(app) => {
     router.get("/", loginController.checkLoggedIn, homepagecontroller.handleIndex);
     router.get("/users", loginController.checkLoggedIn, homepagecontroller.handleViewUsers);
-    router.get("/edituser/:id", loginController.checkLoggedIn, homepagecontroller.handleEditUsers);
+    router.post("/showUser/:id", loginController.checkLoggedIn, homepagecontroller.handleEditUser);
+    router.post("/deleteUser/:id", loginController.checkLoggedIn, homepagecontroller.handleDeleteUser);
+
+    router.get("/inventory", loginController.checkLoggedIn, homepagecontroller.handleInventory); 
+    router.post("/deptName", loginController.checkLoggedIn, homepagecontroller.handleDept);
+
+
+    router.get("/addInventory", loginController.checkLoggedIn, homepagecontroller.addInventoryGit); 
+    router.post("/addInventory", loginController.checkLoggedIn, homepagecontroller.addInventoryGit); 
+
+
+
+
+
 
     router.get("/login",loginController.checkLoggedOut, loginController.getPageLogin);
     router.post("/login", passport.authenticate("local", {

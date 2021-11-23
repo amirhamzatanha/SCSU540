@@ -26,12 +26,13 @@ const createNewUserReg = async (req, res) => {
     }
 
     //create a new user
+    console.log(req.body.designation);
     let newUser = {
-        fName: req.body.fName,
-        lName: req.body.lName,
+        firstName: req.body.fName,
+        lastName: req.body.lName,
         email: req.body.email,
-        password: req.body.password,
-        designation: req.body.designation
+        pword: req.body.password,
+        positionID: req.body.designation
     };
     try {
         await regSer.createNewUser(newUser);

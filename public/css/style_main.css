@@ -47,7 +47,6 @@ nav a {
 nav button{
   background:#e69385;
   border: none;
-  box-shadow:4px 4px 4px #3b1915;
   text-decoration:none;
   color:BLACK;
   font-size: 16px;
@@ -55,8 +54,9 @@ nav button{
   display:block;
   top:1px;
   text-align: left;
-  border-bottom:1px solid #f0664e;  
   cursor: pointer;
+  border-bottom:1px solid #f0664e;  
+
 
 
 }
@@ -96,7 +96,7 @@ nav a:hover{
 }
 .contents{
   background-color:#3E414F;
-  padding:15px 30px;
+  padding:15px 30px 30px 50px;
   width:75%;
   margin:15px 3%;
  
@@ -119,8 +119,8 @@ nav a:hover{
 footer{
   background:#323232;
   padding:10px;
-  position: fixed;
   left: 0;
+  position:fixed;
   bottom: 10px;
   width: 100%;
 
@@ -148,12 +148,11 @@ footer{
 table {border-collapse: collapse; font-family: "Open Sans", arial}
 td, th {border:  1px solid;
       padding: 10px;
+      height: 30px;
       background: 3E414F;
       box-sizing: border-box;
       text-align: left;
 }
-
-
 th {
   position: -webkit-sticky;
   position: sticky;
@@ -161,3 +160,39 @@ th {
   z-index: 2;
   background:#e69385;
 }
+
+button.link {
+	font-family: "Verdana" sans-serif;
+	font-size: 1em;
+	text-align: left;
+	color: #e69385;;
+	background: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+  
+}
+button.link:hover {
+  border-bottom: 2px solid white;
+  color: #FFFFFF;;  
+}
+input{
+	background-color:#e69385;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 300px;
+}
+select {
+  cursor:pointer;
+  display:inline-block;
+  position:relative;
+  color:black;
+  border:1px solid #ccc;
+  height: 25px;
+  width: 300px;
+
+  
+}
+
