@@ -1,11 +1,12 @@
 const DBConnection = require('../config/dbconnect');
 
-const listUsers = (email) => {
+
+//view departments on load of inventory page: 
+const viewDepartments = () => {
     return new Promise( (resolve, reject) => {
         try {
             DBConnection.query(
-                'select e.employeeID, e.firstName, e.lastName, e.DOB, e.gender, e.email, e.employeePhone, e.hireDate, p.positionDescription from employees e, positions p join positions using (positionID) where e.positionID=p.positionID'
-                ,
+                ' SELECT * FROM `departments` ',
                 function(err, rows) {
                     if (err) {
                         reject(err)
@@ -13,7 +14,7 @@ const listUsers = (email) => {
                     if (rows.length > 0) {
                         resolve(rows)
                     } else {
-                        resolve("error: No Users Found.")
+                        resolve("error: No record Found.")
                     }
                 }
             );
@@ -25,21 +26,22 @@ const listUsers = (email) => {
 };
 
 
-const showUser = (userid) => {
+//view inventrory based on the department 
+const viewInvetory = (deptID) => {
     return new Promise( (resolve, reject) => {
         try {
-            console.log(userid);
+            console.log(deptID);
             DBConnection.query(
-                'select e.employeeID, e.firstName, e.lastName, e.DOB, e.gender, e.email, e.employeePhone, e.hireDate, p.positionDescription from employees e, positions p join positions where e.positionID=p.positionID AND `employeeID` = ?  ', userid,
+                ' SELECT * FROM `items` WHERE `deptNum` = ?  ', deptID,
                 function(err, rows) {
                     if (err) {
                         console.log(err);
-                        reject(err)
+                        reject(err);
                     }
                     if (rows.length > 0) {
                         resolve(rows)
                     } else {
-                        resolve("error: No Users Found.")
+                        reject("Error: No Items listed for this department.")
                     }
                 }
             );
@@ -57,7 +59,7 @@ const deleteUser = (userid) => {
         try {
             console.log(userid);
             DBConnection.query(
-                'DELETE FROM `employeeID` WHERE `employeeID` = ?  ', userid,
+                'DELETE FROM `users` WHERE `id` = ?  ', userid,
                 function(err, rows) {
                     if (err) {
                         console.log(err);
@@ -75,7 +77,7 @@ const deleteUser = (userid) => {
 
 
 module.exports = {
-    listUsers: listUsers,
-    showUser: showUser,
+    viewDepartments: viewDepartments,
+    viewInvetory: viewInvetory,
     deleteUser: deleteUser
 }; 

@@ -10,7 +10,7 @@ let handleLogin = (email, password) => {
         let user = await findUserByEmail(email);
         if (user) {
             //compare password
-            await bcrypt.compare(password, user.password).then((isMatch) => {
+            await bcrypt.compare(password, user.pword).then((isMatch) => {
                 if (isMatch) {
                     resolve(true);
                 } else {
@@ -29,7 +29,7 @@ let findUserByEmail = (email) => {
         console.log(email);
         try {
             DBConnection.query(
-                ' SELECT * FROM users WHERE `email` = ?  ', email,
+                ' SELECT * FROM employees WHERE `email` = ?  ', email,
                 function(err, rows) {
                     if (err) {
                         reject(err)
@@ -48,7 +48,7 @@ let findUserById = (id) => {
     return new Promise((resolve, reject) => {
         try {
             DBConnection.query(
-                ' SELECT * FROM `users` WHERE `id` = ?  ', id,
+                ' SELECT * FROM `employees` WHERE `employeeID` = ?  ', id,
                 function(err, rows) {
                     if (err) {
                         reject(err)
@@ -66,7 +66,7 @@ let findUserById = (id) => {
 let comparePassword = (password, userObject) => {
     return new Promise(async (resolve, reject) => {
         try {
-            await bcrypt.compare(password, userObject.password).then((isMatch) => {
+            await bcrypt.compare(password, userObject.pword).then((isMatch) => {
                 if (isMatch) {
                     resolve(true);
                 } else {

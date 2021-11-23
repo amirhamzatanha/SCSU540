@@ -11,17 +11,20 @@ const createNewUser = (data) => {
             // hash password
             let salt = bcrypt.genSaltSync(10);
             let userItem = {
-                id:Date.now().toString(),
-                fName: data.fName,
-                lName: data.lName,
+                employeeID:Date.now().toString(),
+                firstName: data.firstName,
+                lastName: data.lastName,
                 email: data.email,
-                password: bcrypt.hashSync(data.password, salt),
-                designation: data.designation
+                pword: bcrypt.hashSync(data.pword, salt),
+                positionID: data.positionID,
+                employeePhone: 'NULL',
+                gender: 'NULL',
+                DOB: 'NULL'
             };
             console.log(data);
             //create a new account
             connection.query(
-                ' INSERT INTO users set ? ', userItem,
+                ' INSERT INTO employees set ? ', userItem,
                 function(err, rows) {
                     if (err) {
                         console.log(err);
@@ -40,7 +43,7 @@ const checkExistEmail = (email) => {
     return new Promise( (resolve, reject) => {
         try {
             connection.query(
-                ' SELECT * FROM `users` WHERE `email` = ?  ', email,
+                ' SELECT * FROM `employees` WHERE `email` = ?  ', email,
                 function(err, rows) {
                     if (err) {
                         reject(err)
