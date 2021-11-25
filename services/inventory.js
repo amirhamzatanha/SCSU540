@@ -6,7 +6,7 @@ const viewDepartments = () => {
     return new Promise( (resolve, reject) => {
         try {
             DBConnection.query(
-                ' SELECT * FROM `departments` ',
+                'SELECT * FROM `departments` ',
                 function(err, rows) {
                     if (err) {
                         reject(err)

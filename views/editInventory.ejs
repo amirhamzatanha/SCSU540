@@ -16,30 +16,53 @@
   <nav>
     <a class="logo" href="#">
       <h2>Activites</h2>
-      <p>Please Select an action</p>
+      <p>
+        <% if(user.positionID == "4") { %>
+          Privilege Level Admin 
+          <% } %>
+          <% if(user.positionID == "3") { %>
+            Privilege Level Receiver 
+            <% } %>
+            <% if(user.positionID == "2") { %>
+              Privilege Level Price Coordinator 
+              <% } %>
+              <% if(user.positionID == "1") { %>
+                Privilege Level Cashier 
+                <% } %>
+        </p>
     </a> 
    
     <a href="/">
       <i class="fa fa-book fa-lg"></i>
       <span>Home</span>
     </a>
-    
-    <a href="#">
-      <i class="fa fa-book fa-lg"></i>
-      <span>Choice 1</span>
-    </a>
+    <% if(user.positionID == "4") { %>
   
-    <form id="inventory" action = "/addInventory" method="get">
-      <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
-      </form>
-  
-    <form id="inventory" action = "/inventory" method="get">
-      <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
-      </form>
-  
-    <form id="inventory" action = "/users" method="get">
+      <form id="users" action = "/users" method="get">
         <button type="submit"><i class="fa fa-user fa-lg"></i><span>Users</span></button>
         </form>
+  
+      <% } %>
+      <% if(user.positionID == "3") { %>
+        <form id="inventory" action = "/addInventory" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+          </form>
+  
+        <% } %>
+  
+        <% if(user.positionID == "2") { %>
+          <form id="inventory" action = "/inventory" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
+            </form>
+    
+          <% } %>
+          <% if(user.positionID == "1") { %>
+            <form id="inventory" action = "/" method="get">
+              <button type="submit"><i class="fa fa-book fa-lg"></i><span>CashierPage</span></button>
+              </form>
+      
+            <% } %>
+    
   
       <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
       <button type="submit"><i class="fa fa-key fa-lg"></i><span>Log Out</span></button>

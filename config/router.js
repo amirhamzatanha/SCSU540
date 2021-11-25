@@ -16,6 +16,7 @@ let initWebRoutes =async(app) => {
     router.get("/users", loginController.checkLoggedIn, homepagecontroller.handleViewUsers);
     router.post("/showUser/:id", loginController.checkLoggedIn, homepagecontroller.handleEditUser);
     router.post("/deleteUser/:id", loginController.checkLoggedIn, homepagecontroller.handleDeleteUser);
+    router.post("/updateUser", loginController.checkLoggedIn, homepagecontroller.updateUser);
 
     router.get("/inventory", loginController.checkLoggedIn, homepagecontroller.handleInventory); 
     router.post("/deptName", loginController.checkLoggedIn, homepagecontroller.handleDept);

@@ -57,7 +57,7 @@ const deleteUser = (userid) => {
         try {
             console.log(userid);
             DBConnection.query(
-                'DELETE FROM `employeeID` WHERE `employeeID` = ?  ', userid,
+                'INSERT INTO employees set ? ', userid,
                 function(err, rows) {
                     if (err) {
                         console.log(err);
@@ -74,8 +74,32 @@ const deleteUser = (userid) => {
 };
 
 
+//==========================Update User==================================================
+const updateUser = (employeeID, userdetails) => {
+    return new Promise( (resolve, reject) => {
+        try {
+            DBConnection.query(
+                'UPDATE employees SET ? where employeeID = ? ', [userdetails, employeeID], 
+                function(err, rows) {
+                    if (err) {
+                        console.log(err);
+                        reject(err)
+                    }
+                    else 
+                    resolve("Create a new user successful");
+                }
+            );
+        } catch (err) {
+            reject(err);
+
+        }
+    });
+};
+
+
 module.exports = {
     listUsers: listUsers,
     showUser: showUser,
-    deleteUser: deleteUser
+    deleteUser: deleteUser,
+    updateUser: updateUser
 }; 

@@ -1,5 +1,6 @@
 const viewUsers = require('../services/viewUsers');
 const inventory = require('../services/inventory');
+const { body } = require('express-validator');
 
 const handleIndex = async (req, res) => {
     return res.render('index.ejs',{
@@ -72,14 +73,41 @@ const addInventoryGit = async( req,res) => {
         return res.render('editInventory', { user: req.user, dept: departments, data: data, errors: req.flash("errors")});
 
     }
-    catch{
+    catch(err){
         req.flash("errors", err);
+        console.log(err);
         res.redirect("/");
 
     }
     
 };
 
+
+const updateUser = async( req,res) => {
+    const employeeID = req.body.employeeID;
+    const userdetails = {
+        firstname: req.body.firstName,
+        lastName: req.body.lastName,
+        employeePhone: req.body.employeePhone,
+        gender: req.body.gender, 
+        DOB: req.body.DOB, 
+        hireDate: req.body.hireDate
+        }
+    try{
+        const update = await viewUsers.updateUser(employeeID, userdetails);
+        const allUsers =  await viewUsers.listUsers();
+        return res.render('users', { user: req.user, data: allUsers} );        }
+    catch(err){
+            req.flash("errors", err);
+            console.log(err);
+            res.redirect("/users");
+    
+        }
+
+
+    
+    
+};
 
 
 module.exports = {
@@ -89,5 +117,6 @@ module.exports = {
     handleEditUser: handleEditUser, 
     handleInventory: handleInventory,
     handleDept: handleDept,
-    addInventoryGit: addInventoryGit
+    addInventoryGit: addInventoryGit,
+    updateUser: updateUser
 };
