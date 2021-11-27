@@ -1,6 +1,7 @@
 const viewUsers = require('../services/viewUsers');
 const inventory = require('../services/inventory');
 const { body } = require('express-validator');
+const delivery = require('../services/delivery');
 
 const handleIndex = async (req, res) => {
     return res.render('index.ejs',{
@@ -110,6 +111,44 @@ const updateUser = async( req,res) => {
 };
 
 
+const addDeliveryPage = async (req, res) => {
+    console.log("Delivering Delivery Page");
+    return res.render('delivery.ejs',{
+        user: req.user
+    });
+};
+
+const addDelivery = async( req,res) => {
+    
+
+    try{
+        let updateData = {
+        UPC: req.body.UPC,
+        Amount: req.body.Amount,
+        };
+
+        amountInt = parseInt(updateData.Amount);
+        console.log(updateData);
+        console.log(typeof(req.body.UPC));
+        console.log(typeof(amountInt));
+        console.log("Made it to the addDelivery Function");
+        const itemAmount = await delivery.findItemExistingAmount(updateData.UPC);
+        console.log("Past Function");
+        console.log(itemAmount);
+        console.log(typeof(itemAmount));
+        const newTotal = await delivery.updateItemInventory(itemAmount, amountInt, updateData.UPC);
+        console.log("DONE WITH FUNCTION!")
+        return res.render('delivery.ejs', { user: req.user, newTotal: newTotal, errors: req.flash("errors") } );
+    }
+    catch{
+        console.log("Error Function");
+        //req.flash("errors", err);
+        return res.send('Error! The UPC you entered does not exist in the system. Have the Price Coordinator enter a new item. Use the back button to proceed.');
+
+    }
+    
+};
+
 module.exports = {
     handleIndex: handleIndex,
     handleDeleteUser: handleDeleteUser,
@@ -118,5 +157,7 @@ module.exports = {
     handleInventory: handleInventory,
     handleDept: handleDept,
     addInventoryGit: addInventoryGit,
-    updateUser: updateUser
+    updateUser: updateUser,
+    addDeliveryPage: addDeliveryPage,
+    addDelivery: addDelivery
 };
