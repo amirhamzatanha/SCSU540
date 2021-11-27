@@ -26,7 +26,8 @@ let initWebRoutes =async(app) => {
     router.post("/addInventory", loginController.checkLoggedIn, homepagecontroller.addInventoryGit); 
 
 
-
+    router.get("/delivery", loginController.checkLoggedIn, homepagecontroller.addDeliveryPage); 
+    router.post("/addDeliveryPOST", loginController.checkLoggedIn, homepagecontroller.addDelivery);
 
 
 
