@@ -52,6 +52,14 @@
 
       <% } %>
 
+      <% if(user.positionID == "3") { %>
+        <form id="delivery" action = "/delivery" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Delivery</span></button>
+          </form>
+  
+        <% } %>
+  
+
       <% if(user.positionID == "2") { %>
         <form id="inventory" action = "/inventory" method="get">
           <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
