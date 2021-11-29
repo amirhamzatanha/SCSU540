@@ -22,13 +22,21 @@ let initWebRoutes =async(app) => {
     router.post("/deptName", loginController.checkLoggedIn, homepagecontroller.handleDept);
 
 
+    router.post("/showItem/:UPC", loginController.checkLoggedIn, homepagecontroller.handleShowItem);
+    router.post("/updateItem", loginController.checkLoggedIn, homepagecontroller.updateItem);
+    router.post("/deleteItem/:UPC", loginController.checkLoggedIn, homepagecontroller.handleDeleteItem);
+
+    router.get("/transactionDetails", loginController.checkLoggedIn, homepagecontroller.transactionDetails); 
+
+
+
     router.get("/addInventory", loginController.checkLoggedIn, homepagecontroller.addInventoryGit); 
-    router.post("/addInventory", loginController.checkLoggedIn, homepagecontroller.addInventoryGit); 
+    router.post("/addInventory", loginController.checkLoggedIn, homepagecontroller.addInventoryPost); 
+
 
 
     router.get("/delivery", loginController.checkLoggedIn, homepagecontroller.addDeliveryPage); 
     router.post("/addDeliveryPOST", loginController.checkLoggedIn, homepagecontroller.addDelivery);
-
 
 
     router.get("/login",loginController.checkLoggedOut, loginController.getPageLogin);
