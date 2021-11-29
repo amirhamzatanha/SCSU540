@@ -9,67 +9,86 @@
 </head>
 <header>
   
-  <h1><span>Welcome </span><%=  user.fName%> <%= user.lName%></h1>
-  <h3>Add and View inventory</h3>
+  <h1><span>Welcome </span><%=  user.firstName%> <%= user.lastName%></h1>
+  <h3>Inventory Page</h3>
+
 </header>
 <div class="flex">
-  <nav>
-    <a class="logo" href="#">
-      <h2>Activites</h2>
-      <p>
-        <% if(user.positionID == "4") { %>
-          Privilege Level Admin 
-          <% } %>
-          <% if(user.positionID == "3") { %>
-            Privilege Level Receiver 
-            <% } %>
-            <% if(user.positionID == "2") { %>
-              Privilege Level Price Coordinator 
-              <% } %>
-              <% if(user.positionID == "1") { %>
-                Privilege Level Cashier 
-                <% } %>
-        </p>
-    </a> 
-   
-    <a href="/">
-      <i class="fa fa-book fa-lg"></i>
-      <span>Home</span>
-    </a>
-    <% if(user.positionID == "4") { %>
-  
-      <form id="users" action = "/users" method="get">
-        <button type="submit"><i class="fa fa-user fa-lg"></i><span>Users</span></button>
-        </form>
-  
-      <% } %>
-      <% if(user.positionID == "3") { %>
-        <form id="inventory" action = "/addInventory" method="get">
-          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
-          </form>
-  
+<nav>
+  <a class="logo" href="#">
+    <h2>Activites</h2>
+    <p>
+      <% if(user.positionID == "4") { %>
+        Privilege Level Admin 
         <% } %>
-  
-        <% if(user.positionID == "2") { %>
+        <% if(user.positionID == "3") { %>
+          Privilege Level Receiver 
+          <% } %>
+          <% if(user.positionID == "2") { %>
+            Privilege Level Price Coordinator 
+            <% } %>
+            <% if(user.positionID == "1") { %>
+              Privilege Level Cashier 
+              <% } %>
+      </p>
+  </a> 
+ 
+  <a href="/">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Home</span>
+  </a>
+  <% if(user.positionID == "4") { %>
+
+    <form id="users" action = "/users" method="get">
+      <button type="submit"><i class="fa fa-user fa-lg"></i><span>Users</span></button>
+      </form>
+      <form id="inventory" action = "/addInventory" method="get">
+        <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+        </form>
+        <form id="delivery" action = "/delivery" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Delivery</span></button>
+          </form>
           <form id="inventory" action = "/inventory" method="get">
             <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
             </form>
-    
-          <% } %>
-          <% if(user.positionID == "1") { %>
-            <form id="inventory" action = "/" method="get">
+            <form id="inventory" action = "/transactionDetails" method="get">
               <button type="submit"><i class="fa fa-book fa-lg"></i><span>CashierPage</span></button>
               </form>
       
-            <% } %>
+    <% } %>
+    <% if(user.positionID == "3") { %>
+      <form id="inventory" action = "/addInventory" method="get">
+        <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+        </form>
+        <form id="delivery" action = "/delivery" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Delivery</span></button>
+          </form>
+
+      <% } %>
+
+      <% if(user.positionID == "2") { %>
+        <form id="inventory" action = "/inventory" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
+          </form>
+          <form id="inventory" action = "/addInventory" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+            </form>
+  
+        <% } %>
+        <% if(user.positionID == "1") { %>
+          <form id="inventory" action = "/transactionDetails" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>CashierPage</span></button>
+            </form>
     
+          <% } %>
   
-      <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
-      <button type="submit"><i class="fa fa-key fa-lg"></i><span>Log Out</span></button>
-      </form>
-   
-  
-    </nav>
+
+    <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
+    <button type="submit"><i class="fa fa-key fa-lg"></i><span>Log Out</span></button>
+    </form>
+ 
+
+  </nav>
   <div class="contents">
     <h1>inventory</h1>
 
@@ -104,33 +123,49 @@
       <% }); %>
   <% } %>
 
-      <% if(data != "") { %>
-        <% let i = 1 %>
-        <br><br>
-        <table id="inventoryTable"  >
-          <tr>
-            <th style="min-width:10mm">#</th> 
-            <th style="min-width:50mm"> UPC</th> 
-            <th style="min-width:50mm"> Item Description</th> 
-            <th style="min-width:50mm"> Price</th>
-            <th style="min-width:50mm"> Quantity</th>  
-            <th style="min-width:50mm;">Notes </th>      
-          </tr>
+  <% if(data != "") { %>
+    <% let i = 1 %>
+    <br><br>
+    <table id="inventoryTable"  >
+      <tr>
+        <th style="min-width:10mm">#</th> 
+        <th style="min-width:20mm"> UPC</th> 
+        <th style="min-width:20mm"> Dept Code</th>
+        <th style="min-width:40mm"> Item Description</th> 
+        <th style="min-width:30mm"> Price</th>
+        <th style="min-width:30mm"> Quantity</th>  
+        <th style="min-width:30mm;">Notes</th> 
+        <th style="min-width:30mm;">Taxe Rate</th>
+        <th style="min-width:30mm; text-align: center;">Actions </th>       
+      </tr>
 
-        <% data.forEach((rows) => { %>
-          <tr>
-          <td style="min-width:10mm; text-align: center;"><%= i++ %></td> 
-          <td style="min-width:50mm"><%= rows.UPC %></td>
-          <td style="min-width:50mm"><%= rows.itemDescription %></td>
-          <td style="min-width:50mm">$ <%= rows.price %></td>
-          <td style="min-width:50mm"><%= rows.amount %></td>
-          <td style="min-width:50mm"><%= rows.notes %></td>
-          </td>
-          </tr>
+    <% data.forEach((rows) => { %>
+      <tr>
+      <td style="min-width:10mm; text-align: center;"><%= i++ %></td> 
+      <td style="min-width:20mm"><%= rows.UPC %></td>
+      <td style="min-width:20mm"><%= rows.deptNum %></td>
+      <td style="min-width:40mm"><%= rows.itemDescription %></td>
+      <td style="min-width:30mm">$ <%= rows.price %></td>
+      <td style="min-width:30mm"><%= rows.amount %></td>
+      <td style="min-width:30mm"><%= rows.notes %></td>
+      <td style="min-width:30mm"><%= rows.taxRate %></td>
+      <td style="min-width:30mm; text-align: center;">
 
-        <% }); %>
-      </table>
-    <% } %>
+   
+
+        <form id="editItem" name="showItem" action = "/showItem/<%= rows.UPC %>" method="POST" style="display: inline;">
+          <button type="submit" class="link">Edit </button></form>
+          <span> || </span>
+          <form id="editItem" name="deleteItem" action = "/deleteItem/<%= rows.UPC %>" method="POST" style="display: inline;">
+          <button type="submit" class="link"><span> Delete</span> </button>
+          </form>
+
+      </td>
+      </tr>
+
+    <% }); %>
+  </table>
+<% } %>
    
 
 

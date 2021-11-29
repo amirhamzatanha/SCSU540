@@ -10,7 +10,7 @@
 <header>
   
   <h1><span>Welcome </span><%=  user.firstName%> <%= user.lastName%></h1>
-  <h3>Inventory Page</h3>
+  <h3>Edit Items Page</h3>
 
 </header>
 <div class="flex">
@@ -90,53 +90,39 @@
 
   </nav>
   <div class="contents">
-    <h1>inventory</h1>
+    <h1>Edit item</h1>
+
   
-    <h3>Provide below details for item to be added to the inventory</h3>
+    <h3>The Selected item is :    <%= itemInfo[0].itemDescription %>    </h3>
     <% if(errors != "") { %>
       <% errors.forEach((item) => { %>
+        <br><br>  
         <span class = "alert alert-danger">
               <%- item %>
           </span>
-          <br /> <br/>
       <% }); %>
-      <br>
   <% } %>
-  <% if(message != "") { %>
 
-      <span class = "alert alert-danger">
-            <%- message%>
-        </span>
-        <br/> <br/>
-<% } %>
+      <% if(itemInfo != "") { %>
+        <% let i = 1 %>
+          <form id="editItem" name="updateItem" action = "/updateItem" method="POST" style="display: inline;">
+            <label for="UPC" style="width:100px; display: inline-block;" >UPC</label>
+            <input type="text" name="UPC" id="UPC" value="<%= itemInfo[0].UPC %>"> <br>
+          <label for="itemDescription" style="width:100px; display: inline-block;" >Description</label>
+          <input type="text" name="itemDescription" id="itemDescription" value="<%= itemInfo[0].itemDescription %>"> <br>
+          <label for="price" style="width: 100px; display: inline-block;">Price</label>
 
-    <form method="post" id="addInventory" action="/addInventory">
+          <input type="text" name="price" id="price"value="<%= itemInfo[0].price %>"> <br>
+          <label for="notes"style="width: 100px; display: inline-block;">Notes</label>
+          <input type="text" name="notes" id="notes"value="<%= itemInfo[0].notes %>"> <br>
+           
+              <button type="submit" style="color: black; width: 200px;" >Update Info </button></form><br>
+              <br>
 
-        
-          <label for="deptNum" style="width:200px; display: inline-block;" >Department Name</label>
-          <% if(dept != "") { %>
-            <% let i = 1 %>
-            <select id="deptNum" name="deptNum"style="background-color: #e69385; height:45px; color: white;">
-
-        <% dept.forEach((rows) => { %>
-          <option id="deptNum" name='deptNum' value="<%= rows.deptNum %>" > <%= rows.deptDescription %></option>
-          <% }); %>
-        </select>
-          <br>
-          <label for="UPC" style="width:200px; display: inline-block;"  >Item UPC</label>
-          <input type="text" name="UPC" id="UPC"> <br>
-          <label for="description" style="width: 200px; display: inline-block;">Item Description</label>
-          <input type="text" name="itemDescription" id="description"> <br>
-          <label for="price" style="width: 200px; display: inline-block;">Item Price</label>
-          <input type="text" name="price" id="price"> <br>
-          <label for="amount" style="width: 200px; display: inline-block;">Item Quantity</label>
-          <input type="text" name="amount" id="amount"> <br>
-          <label for="notes" style="width: 200px; display: inline-block;">Notes</label>
-          <input type="text" name="notes" id="notes"> <br>
-
-          <button id="addInventory" type="submit" style="color: black; width: 150px;"  ><span> Add Record</span> </button>
       
-    </form>
+          </td>
+          </tr>
+  
     <% } %>
 
 

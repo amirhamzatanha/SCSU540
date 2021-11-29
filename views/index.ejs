@@ -4,14 +4,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style_main.css">
+<link rel="stylesheet" href="/css/style_main.css">
 <title> Supermarket Inner Page </title>
 </head>
 <header>
   
   <h1><span>Welcome </span><%=  user.firstName%> <%= user.lastName%></h1>
   <h3>Main Page</h3>
-  <h3>Showing Tabs for <%= user.positionID %></h3>
 
 </header>
 <div class="flex">
@@ -43,31 +42,41 @@
     <form id="users" action = "/users" method="get">
       <button type="submit"><i class="fa fa-user fa-lg"></i><span>Users</span></button>
       </form>
-
+      <form id="inventory" action = "/addInventory" method="get">
+        <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+        </form>
+        <form id="delivery" action = "/delivery" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Delivery</span></button>
+          </form>
+          <form id="inventory" action = "/inventory" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
+            </form>
+            <form id="inventory" action = "/transactionDetails" method="get">
+              <button type="submit"><i class="fa fa-book fa-lg"></i><span>CashierPage</span></button>
+              </form>
+      
     <% } %>
     <% if(user.positionID == "3") { %>
       <form id="inventory" action = "/addInventory" method="get">
         <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
         </form>
-
-      <% } %>
-
-      <% if(user.positionID == "3") { %>
         <form id="delivery" action = "/delivery" method="get">
           <button type="submit"><i class="fa fa-book fa-lg"></i><span>Delivery</span></button>
           </form>
-  
-        <% } %>
-  
+
+      <% } %>
 
       <% if(user.positionID == "2") { %>
         <form id="inventory" action = "/inventory" method="get">
           <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
           </form>
+          <form id="inventory" action = "/addInventory" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+            </form>
   
         <% } %>
         <% if(user.positionID == "1") { %>
-          <form id="inventory" action = "/" method="get">
+          <form id="inventory" action = "/transactionDetails" method="get">
             <button type="submit"><i class="fa fa-book fa-lg"></i><span>CashierPage</span></button>
             </form>
     

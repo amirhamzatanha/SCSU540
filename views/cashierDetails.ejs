@@ -10,7 +10,7 @@
 <header>
   
   <h1><span>Welcome </span><%=  user.firstName%> <%= user.lastName%></h1>
-  <h3>Inventory Page</h3>
+  <h3>Cashier Details Page</h3>
 
 </header>
 <div class="flex">
@@ -91,53 +91,63 @@
   </nav>
   <div class="contents">
     <h1>inventory</h1>
+
   
-    <h3>Provide below details for item to be added to the inventory</h3>
+    <h3>List of Transaction Comleted by the User Including Customers </h3>
+  
     <% if(errors != "") { %>
       <% errors.forEach((item) => { %>
+        <br><br>  
         <span class = "alert alert-danger">
               <%- item %>
           </span>
-          <br /> <br/>
       <% }); %>
-      <br>
   <% } %>
-  <% if(message != "") { %>
 
-      <span class = "alert alert-danger">
-            <%- message%>
-        </span>
-        <br/> <br/>
-<% } %>
-
-    <form method="post" id="addInventory" action="/addInventory">
-
+  <% if(data != "") { %>
+    <% let i = 1 %>
+    <br><br>
+    <table id="cashierDetails"  >
+      <tr>
+        <th style="min-width:10mm">#</th> 
         
-          <label for="deptNum" style="width:200px; display: inline-block;" >Department Name</label>
-          <% if(dept != "") { %>
-            <% let i = 1 %>
-            <select id="deptNum" name="deptNum"style="background-color: #e69385; height:45px; color: white;">
+        <th style="min-width:20mm"> Transaction ID</th> 
+        <th style="min-width:30mm"> Customer First Name</th>
+        <th style="min-width:30mm"> Customer Last Name</th>
+        <th style="min-width:20mm"> Payment ID</th>
+        <th style="min-width:40mm"> Transaction Total</th> 
+        <th style="min-width:30mm"> Payment Method</th>
 
-        <% dept.forEach((rows) => { %>
-          <option id="deptNum" name='deptNum' value="<%= rows.deptNum %>" > <%= rows.deptDescription %></option>
-          <% }); %>
-        </select>
-          <br>
-          <label for="UPC" style="width:200px; display: inline-block;"  >Item UPC</label>
-          <input type="text" name="UPC" id="UPC"> <br>
-          <label for="description" style="width: 200px; display: inline-block;">Item Description</label>
-          <input type="text" name="itemDescription" id="description"> <br>
-          <label for="price" style="width: 200px; display: inline-block;">Item Price</label>
-          <input type="text" name="price" id="price"> <br>
-          <label for="amount" style="width: 200px; display: inline-block;">Item Quantity</label>
-          <input type="text" name="amount" id="amount"> <br>
-          <label for="notes" style="width: 200px; display: inline-block;">Notes</label>
-          <input type="text" name="notes" id="notes"> <br>
 
-          <button id="addInventory" type="submit" style="color: black; width: 150px;"  ><span> Add Record</span> </button>
-      
-    </form>
-    <% } %>
+      </tr>
+
+    <% data.forEach((rows) => { %>
+      <tr>
+      <td style="min-width:10mm; text-align: center;"><%= i++ %></td> 
+      <td style="min-width:20mm"><%= rows.transactionID %></td>
+      <td style="min-width:20mm"><%= rows.firstName %></td>
+      <td style="min-width:40mm"><%= rows.lastName %></td>
+      <td style="min-width:20mm"><%= rows.paymentID %></td>
+      <td style="min-width:40mm"><%= rows.transactionTotal %></td>
+      <td style="min-width:30mm"> <%= rows.paymentMethod %></td>
+      </tr>
+
+    <% }); %>
+    <tfoot>
+      <tr>
+        <td>Total For Transactions</td>
+        <td><% if(result != "") { %> 
+          <%= result %>
+          
+          <% } %></td>
+      </tr>
+    </tfoot>
+  </table>
+<% } %>
+   
+
+
+
 
 
   </div>

@@ -1,57 +1,106 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <link rel="stylesheet" href="/css/style_main.css">
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <title> Supermarket Inner Page </title>
 </head>
 <header>
   
-  <h1><span>Welcome </span><%=  user.fName%> <%= user.lName%></h1>
-  <h3>Enter Delivery Information</h3>
+  <h1><span>Welcome </span><%=  user.firstName%> <%= user.lastName%></h1>
+  <h3>Delivery Page</h3>
+
 </header>
 <div class="flex">
-  <nav>
-    <a class="logo" href="#">
-      <h2>Activites</h2>
-      <p>Please Select an action</p>
-    </a> 
-   
-    <a href="/">
-      <i class="fa fa-book fa-lg"></i>
-      <span>Home</span>
-    </a>
-    
-    <a href="#">
-      <i class="fa fa-book fa-lg"></i>
-      <span>Choice 1</span>
-    </a>
-  
-    <form id="inventory" action = "/addInventory" method="get">
-      <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+<nav>
+  <a class="logo" href="#">
+    <h2>Activites</h2>
+    <p>
+      <% if(user.positionID == "4") { %>
+        Privilege Level Admin 
+        <% } %>
+        <% if(user.positionID == "3") { %>
+          Privilege Level Receiver 
+          <% } %>
+          <% if(user.positionID == "2") { %>
+            Privilege Level Price Coordinator 
+            <% } %>
+            <% if(user.positionID == "1") { %>
+              Privilege Level Cashier 
+              <% } %>
+      </p>
+  </a> 
+ 
+  <a href="/">
+    <i class="fa fa-book fa-lg"></i>
+    <span>Home</span>
+  </a>
+  <% if(user.positionID == "4") { %>
+
+    <form id="users" action = "/users" method="get">
+      <button type="submit"><i class="fa fa-user fa-lg"></i><span>Users</span></button>
       </form>
-  
-    <form id="inventory" action = "/inventory" method="get">
-      <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
-      </form>
-  
-    <form id="inventory" action = "/users" method="get">
-        <button type="submit"><i class="fa fa-user fa-lg"></i><span>Users</span></button>
+      <form id="inventory" action = "/addInventory" method="get">
+        <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
         </form>
+        <form id="delivery" action = "/delivery" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Delivery</span></button>
+          </form>
+          <form id="inventory" action = "/inventory" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
+            </form>
+            <form id="inventory" action = "/transactionDetails" method="get">
+              <button type="submit"><i class="fa fa-book fa-lg"></i><span>CashierPage</span></button>
+              </form>
+      
+    <% } %>
+    <% if(user.positionID == "3") { %>
+      <form id="inventory" action = "/addInventory" method="get">
+        <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+        </form>
+        <form id="delivery" action = "/delivery" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>Delivery</span></button>
+          </form>
+
+      <% } %>
+
+      <% if(user.positionID == "2") { %>
+        <form id="inventory" action = "/inventory" method="get">
+          <button type="submit"><i class="fa fa-book fa-lg"></i><span>View Inventory</span></button>
+          </form>
+          <form id="inventory" action = "/addInventory" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>Add Inventory</span></button>
+            </form>
   
-      <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
-      <button type="submit"><i class="fa fa-key fa-lg"></i><span>Log Out</span></button>
-      </form>
-   
+        <% } %>
+        <% if(user.positionID == "1") { %>
+          <form id="inventory" action = "/transactionDetails" method="get">
+            <button type="submit"><i class="fa fa-book fa-lg"></i><span>CashierPage</span></button>
+            </form>
+    
+          <% } %>
   
-    </nav>
+
+    <form id="logoutf" action = "/logout?_method=DELETE" method="POST">
+    <button type="submit"><i class="fa fa-key fa-lg"></i><span>Log Out</span></button>
+    </form>
+ 
+
+  </nav>
   <div class="contents">
     <h1>Delivery</h1>
   
     <h3>Please enter the UPC and Amount of items received in a Delivery</h3>
+    <% if(errors != "") { %>
+        <% errors.forEach((item) => { %>
+          <br><br>  
+          <span class = "alert alert-danger">
+                <%- item %>
+            </span>
+        <% }); %>
+    <% } %>
 
 
     <form method="post" id="addDeliveryPOST" action="/addDeliveryPOST">
