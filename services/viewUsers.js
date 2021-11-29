@@ -57,7 +57,7 @@ const deleteUser = (userid) => {
         try {
             console.log(userid);
             DBConnection.query(
-                'INSERT INTO employees set ? ', userid,
+                'Delete from employees where employeeID =  ? ', userid,
                 function(err, rows) {
                     if (err) {
                         console.log(err);

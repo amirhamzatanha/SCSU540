@@ -3,8 +3,8 @@ const connection = require('../config/dbconnect');
 const findItemExistingAmount = (data) => {
     return new Promise( (resolve, reject) => {
         try {
-            console.log("Inside findItemExistingAmount")
-            console.log(data);
+            //console.log("Inside findItemExistingAmount")
+           // console.log(data);
 
             connection.query(
                 ' SELECT `amount` FROM `items` WHERE `UPC` = ?  ', data,
@@ -16,7 +16,7 @@ const findItemExistingAmount = (data) => {
                     if (rows.length > 0) {
                         resolve(rows[0].amount)
                     } else {
-                        reject("Error: No Items listed for this department.")
+                        reject("Error: the UPC number is not found.")
                     }
                 }
             );
@@ -33,14 +33,14 @@ const updateItemInventory = (currentAmount, addedAmount, currentUPC) => {
 
     return new Promise( (resolve, reject) => {
         try {
-            console.log("Inside updateItemInventory");
-            console.log(currentAmount);
-            console.log(typeof(currentAmount));
-            console.log(addedAmount);
-            console.log(typeof(addedAmount));
-            console.log(currentUPC);
-            console.log(typeof(currentUPC));
-            console.log("---------------------");
+            //console.log("Inside updateItemInventory");
+            //console.log(currentAmount);
+            //console.log(typeof(currentAmount));
+            //console.log(addedAmount);
+           // console.log(typeof(addedAmount));
+            //console.log(currentUPC);
+           // console.log(typeof(currentUPC));
+           // console.log("---------------------");
 
             //const currentItemAmount = findItemExistingAmount(data);
             //console.log("Current Item Amount");
@@ -48,7 +48,7 @@ const updateItemInventory = (currentAmount, addedAmount, currentUPC) => {
             //const newAmount = data.amount + currentItemAmount;
 
             const newAmount = addedAmount + currentAmount;
-            console.log(newAmount);
+            //console.log(newAmount);
             connection.query(
                 ' UPDATE `items` SET `amount` = ' + newAmount + ' WHERE `UPC` = ?', currentUPC,
                 function(err, rows) {
